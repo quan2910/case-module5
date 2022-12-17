@@ -4,20 +4,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const mongoose_1 = __importDefault(require("mongoose"));
 const router_1 = require("./src/router/router");
-const cors_1 = __importDefault(require("cors"));
-const DB_URL = 'mongodb://127.0.0.1:27017/TH_MD4';
-mongoose_1.default.connect(DB_URL).then(() => {
-    console.log(' db connected');
-}).catch((err) => {
-    console.log(err);
-});
+const express_fileupload_1 = __importDefault(require("express-fileupload"));
 const app = (0, express_1.default)();
-app.use((0, cors_1.default)());
+app.use(express_1.default.static('public'));
 app.use(express_1.default.json());
-app.use('', router_1.router);
-app.listen(3000, () => {
-    console.log("server is running");
+app.use((0, express_fileupload_1.default)({
+    createParentPath: true
+}));
+app.use("", router_1.router);
+const PORT = 3000;
+app.listen(PORT, () => {
+    console.log("Server is running !!");
 });
 //# sourceMappingURL=index.js.map

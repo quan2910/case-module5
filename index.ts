@@ -1,18 +1,18 @@
-import express from "express";
-import mongoose from "mongoose";
-import {router} from './src/router/router';
-import cors from "cors"
-
-const DB_URL = 'mongodb://127.0.0.1:27017/TH_MD4';
-mongoose.connect(DB_URL).then(()=>{
-    console.log(' db connected')
-}).catch((err)=>{
-    console.log(err)
-})
+import express from 'express';
+import {router} from "./src/router/router";
+import fileUpload from 'express-fileupload';
+import {AppDataSource} from "./src/data-source";
 const app = express();
-app.use(cors());
+
+app.use(express.static('public'));
 app.use(express.json());
-app.use('',router);
-app.listen(3000,()=>{
-    console.log("server is running")
+app.use(fileUpload({
+    createParentPath: true
+}));
+app.use("", router);
+const PORT = 3000
+app.listen(PORT, () => {
+    console.log("Server is running !!")
 })
+
+

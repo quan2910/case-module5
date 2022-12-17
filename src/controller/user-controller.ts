@@ -1,16 +1,17 @@
 import {Request, Response} from "express";
-import {Category} from "../model/category";
-import {Motobike} from "../model/motobike";
+import {UserService} from "../service/user-service";
+
 
 class UserController {
-    findAll = async (req:Request,res:Response)=>{
-        let category = await Category.find();
-        return res.status(200).json(category);
+    private userService: UserService
+    constructor() {
+        this.userService = new UserService()
     }
-    addC = async (req: Request, res: Response) => {
-        let category = req.body;
-        category = await Category.create(category);
-        return res.status(201).json(category);
+    getAll = async (req:Request,res:Response)=>{
+        let user = await this.userService.findAll(req, res);
+        res.render ('user/lists', {
+            listUser: user
+        })
     }
 }
 export default new UserController();
