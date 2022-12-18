@@ -12,12 +12,12 @@ class BlogController {
             let addBlog = await this.blogService.add(blog);
             res.status(200).json(addBlog);
         };
-        this.deleteBlog = async (req, res) => {
+        this.delete = async (req, res) => {
             let id = +req.params.id;
             let remove = await this.blogService.delete(id);
             res.status(200).json(remove);
         };
-        this.editBlog = async (req, res) => {
+        this.edit = async (req, res) => {
             let id = +req.params.id;
             let data = req.body;
             let edit = await this.blogService.edit({ id: id }, data);

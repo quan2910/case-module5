@@ -9,15 +9,19 @@ class UserService {
             let users = await this.userService.find();
             return users;
         };
+        this.login = async (username) => {
+            let users = await this.userService.query(`select * from users where username = '${username}'`);
+            return users;
+        };
         this.register = async (data) => {
             let registers = await this.userService.save(data);
             return registers;
         };
-        this.removeUser = async (id) => {
+        this.remove = async (id) => {
             let remove = await this.userService.delete(id);
             return remove;
         };
-        this.editUser = async (id, data) => {
+        this.edit = async (id, data) => {
             let update = await this.userService.update(id, data);
             return update;
         };

@@ -9,6 +9,6 @@ const express_1 = require("express");
 exports.blogRouter = (0, express_1.Router)();
 exports.blogRouter.get('', blog_controller_1.default.getAll);
 exports.blogRouter.post('', blog_controller_1.default.add);
-exports.blogRouter.delete('/:id', blog_controller_1.default.deleteBlog);
-exports.blogRouter.put('/:id', blog_controller_1.default.editBlog);
+exports.blogRouter.delete('/:id', blog_controller_1.default.delete);
+exports.blogRouter.put('/:id', blog_controller_1.default.edit);
 //# sourceMappingURL=blog-router.js.map

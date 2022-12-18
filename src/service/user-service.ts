@@ -1,6 +1,5 @@
 import {AppDataSource} from "../data-source";
 import {User} from "../model/user"
-import {Request, Response} from "express";
 
 export class UserService {
     private userService: any;
@@ -15,6 +14,11 @@ export class UserService {
         let users = await this.userService.find()
         return users
     }
+    login = async (username) => {
+        let users = await this.userService.query(`select * from users where username = '${username}'`)
+        return users
+    }
+
     register = async (data) => {
         let registers = await this.userService.save(data)
         return registers

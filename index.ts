@@ -1,7 +1,6 @@
 import express from 'express';
 import {router} from "./src/router/router";
 import fileUpload from 'express-fileupload';
-import {AppDataSource} from "./src/data-source";
 const app = express();
 
 app.use(express.static('public'));
