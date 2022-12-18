@@ -16,7 +16,7 @@ let Blog = class Blog {
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)({ type: 'int' }),
     __metadata("design:type", Number)
-], Blog.prototype, "idB", void 0);
+], Blog.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'varchar' }),
     __metadata("design:type", String)
@@ -40,11 +40,11 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)({ type: 'int' }),
     __metadata("design:type", Number)
-], Blog.prototype, "like", void 0);
+], Blog.prototype, "likes", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'varchar' }),
     __metadata("design:type", String)
-], Blog.prototype, "comment", void 0);
+], Blog.prototype, "comments", void 0);
 Blog = __decorate([
     (0, typeorm_1.Entity)({ name: 'blogs' })
 ], Blog);

@@ -3,7 +3,7 @@ import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
 @Entity({name: 'blogs'})
 export class Blog{
     @PrimaryGeneratedColumn({type:'int'})
-    public readonly idB: number;
+    public readonly id: number;
     @Column({type:'varchar'})
     public tittle: string;
     @Column({type:'varchar'})
@@ -15,7 +15,7 @@ export class Blog{
     @Column({type: 'varchar'})
     public status: string;
     @Column({type: 'int'})
-    public like: number;
+    public likes: number;
     @Column({type: 'varchar'})
-    public comment: string;
+    public comments: string;
 }

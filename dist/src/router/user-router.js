@@ -7,5 +7,8 @@ exports.userRouter = void 0;
 const express_1 = require("express");
 const user_controller_1 = __importDefault(require("../controller/user-controller"));
 exports.userRouter = (0, express_1.Router)();
-exports.userRouter.get('/lists', user_controller_1.default.getAll);
+exports.userRouter.get('', user_controller_1.default.getAll);
+exports.userRouter.post('', user_controller_1.default.register);
+exports.userRouter.delete('/:id', user_controller_1.default.deleteUser);
+exports.userRouter.put('/:id', user_controller_1.default.editUser);
 //# sourceMappingURL=user-router.js.map

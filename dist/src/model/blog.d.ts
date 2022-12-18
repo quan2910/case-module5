@@ -1,10 +1,10 @@
 export declare class Blog {
-    readonly idB: number;
+    readonly id: number;
     tittle: string;
     content: string;
     idUser: number;
     time: string;
     status: string;
-    like: number;
-    comment: string;
+    likes: number;
+    comments: string;
 }

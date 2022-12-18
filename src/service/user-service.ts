@@ -11,12 +11,21 @@ export class UserService {
             this.userService = connection.getRepository(User)
         })
     }
-    findAll = async (req: Request, res: Response) => {
+    findAll = async () => {
         let users = await this.userService.find()
         return users
     }
-    login = async (req: Request, res: Response) => {
-
+    register = async (data) => {
+        let registers = await this.userService.save(data)
+        return registers
+    }
+    remove = async (id) => {
+        let remove = await this.userService.delete(id)
+        return remove
+    }
+    edit = async (id,data) => {
+        let update = await this.userService.update(id,data)
+        return update
     }
 }
 

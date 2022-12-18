@@ -1,7 +1,8 @@
-import { Request, Response } from "express";
 export declare class UserService {
     private userService;
     constructor();
-    findAll: (req: Request, res: Response) => Promise<any>;
-    login: any;
+    findAll: () => Promise<any>;
+    register: (data: any) => Promise<any>;
+    removeUser: (id: any) => Promise<any>;
+    editUser: (id: any, data: any) => Promise<any>;
 }

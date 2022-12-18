@@ -5,9 +5,21 @@ const data_source_1 = require("../data-source");
 const user_1 = require("../model/user");
 class UserService {
     constructor() {
-        this.findAll = async (req, res) => {
+        this.findAll = async () => {
             let users = await this.userService.find();
             return users;
+        };
+        this.register = async (data) => {
+            let registers = await this.userService.save(data);
+            return registers;
+        };
+        this.removeUser = async (id) => {
+            let remove = await this.userService.delete(id);
+            return remove;
+        };
+        this.editUser = async (id, data) => {
+            let update = await this.userService.update(id, data);
+            return update;
         };
         data_source_1.AppDataSource.initialize().then(connection => {
             console.log('Connected Database');
