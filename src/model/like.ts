@@ -1,4 +1,6 @@
 import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
+import {User} from "./user";
+import {Blog} from "./blog";
 
 @Entity({name: 'likes'})
 export class Like{

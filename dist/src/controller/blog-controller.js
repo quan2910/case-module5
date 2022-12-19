@@ -7,6 +7,11 @@ class BlogController {
             let blogs = await this.blogService.findAll();
             res.status(200).json(blogs);
         };
+        this.findByName = async (req, res) => {
+            let post = req.body;
+            let posts = await this.blogService.findByName(post.tittle);
+            res.status(200).json(posts);
+        };
         this.add = async (req, res) => {
             let blog = req.body;
             let addBlog = await this.blogService.add(blog);

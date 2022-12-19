@@ -15,7 +15,7 @@ class UserController {
         };
         this.register = async (req, res) => {
             let user = req.body;
-            const userFind = await this.userService.findOneUserByUsername(user.username);
+            const userFind = await this.userService.login(user.username);
             if (userFind.length !== 0) {
                 res.json({
                     mess: "Tài khoản đã tồn tại !!",
@@ -31,9 +31,14 @@ class UserController {
                 });
             }
         };
-        this.login = async (req, res) => {
+        this.findByName = async (req, res) => {
             let user = req.body;
             let userFind = await this.userService.findOneUserByUsername(user.username);
+            return res.status(200).json(userFind);
+        };
+        this.login = async (req, res) => {
+            let user = req.body;
+            let userFind = await this.userService.login(user.username);
             if (userFind.length == 0) {
                 return res.status(200).json({
                     massage: 'User is not exist !'

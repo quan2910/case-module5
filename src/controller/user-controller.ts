@@ -19,14 +19,14 @@ class UserController {
     register = async (req: Request, res: Response) => {
         let user = req.body
         // console.log(user)
-        const userFind = await this.userService.findOneUserByUsername(user.username)
+        const userFind = await this.userService.login(user.username)
         // console.log(userFind)
-        if(userFind.length !== 0) {
+        if (userFind.length !== 0) {
             res.json({
                 mess: "Tài khoản đã tồn tại !!",
                 checkRegister: false
             })
-        }else{
+        } else {
             user.password = await bcrypt.hash(user.password, 10)
             await this.userService.register(user)
             res.status(200).json({
@@ -35,9 +35,14 @@ class UserController {
             })
         }
     }
+    findByName = async (req: Request, res: Response) => {
+        let user = req.body;
+        let userFind = await this.userService.findOneUserByUsername(user.username);
+        return res.status(200).json(userFind)
+    }
     login = async (req: Request, res: Response) => {
         let user = req.body
-        let userFind = await this.userService.findOneUserByUsername(user.username)
+        let userFind = await this.userService.login(user.username)
         if (userFind.length == 0) {
             return res.status(200).json({
                 massage: 'User is not exist !'

@@ -3,12 +3,19 @@ import {BlogService} from "../service/blog-service";
 
 class BlogController {
     private blogService: BlogService
+
     constructor() {
         this.blogService = new BlogService()
     }
+
     getAll = async (req: Request, res: Response) => {
         let blogs = await this.blogService.findAll();
         res.status(200).json(blogs)
+    }
+    findByName = async (req: Request, res: Response) => {
+        let post = req.body
+        let posts = await this.blogService.findByName(post.tittle)
+        res.status(200).json(posts)
     }
     add = async (req: Request, res: Response) => {
         let blog = req.body
@@ -27,6 +34,7 @@ class BlogController {
         res.status(200).json(edit)
     }
 }
+
 export default new BlogController()
 
 

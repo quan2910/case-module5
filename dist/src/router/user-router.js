@@ -12,4 +12,5 @@ exports.userRouter.post('/register', user_controller_1.default.register);
 exports.userRouter.delete('/:id', user_controller_1.default.delete);
 exports.userRouter.put('/:id', user_controller_1.default.edit);
 exports.userRouter.post('/login', user_controller_1.default.login);
+exports.userRouter.get('/find-by-name', user_controller_1.default.findByName);
 //# sourceMappingURL=user-router.js.map

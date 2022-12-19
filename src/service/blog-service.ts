@@ -12,8 +12,12 @@ export class BlogService {
         })
     }
     findAll = async () => {
-        let blogs = await this.blogService.find()
+        let blogs = await this.blogService.query(`select * from blogs join users on idUser = users.id`)
         return blogs
+    }
+    findByName = async (tittle) => {
+        let name = await this.blogService.query(`select * from blogs where tittle like '%${tittle}%'`)
+        return name;
     }
     add = async (data)=>{
         let addBlog = await this.blogService.save(data)

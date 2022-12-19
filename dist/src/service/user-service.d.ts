@@ -3,6 +3,7 @@ export declare class UserService {
     constructor();
     findAll: () => Promise<any>;
     findOneUserByUsername: (username: any) => Promise<any>;
+    login: (username: any) => Promise<any>;
     register: (data: any) => Promise<any>;
     remove: (id: any) => Promise<any>;
     edit: (id: any, data: any) => Promise<any>;

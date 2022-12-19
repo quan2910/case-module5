@@ -15,6 +15,10 @@ export class UserService {
         return users
     }
     findOneUserByUsername = async (username) => {
+        let users = await this.userService.query(`select * from users where username like '%${username}%'`)
+        return users
+    }
+    login = async (username) => {
         let users = await this.userService.query(`select * from users where username = '${username}'`)
         return users
     }
