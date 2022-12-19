@@ -6,7 +6,7 @@ export class Blog{
     public readonly id: number;
     @Column({type:'varchar'})
     public tittle: string;
-    @Column({type:'varchar'})
+    @Column({type:'double'})
     public content: string;
     @Column({type: 'int'})
     public idUser: number;

@@ -8,7 +8,7 @@
       <jdbc-url>mongodb://localhost:27017</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="@localhost [3]" uuid="2c45f6c5-5aa4-4f49-aec0-61255c86acae">
+    <data-source source="LOCAL" name="@localhost [2]" uuid="1c16ff1d-f880-48be-ac74-401cf0ddb8d6">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>

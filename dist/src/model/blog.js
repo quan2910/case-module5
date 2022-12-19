@@ -22,7 +22,7 @@ __decorate([
     __metadata("design:type", String)
 ], Blog.prototype, "tittle", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'varchar' }),
+    (0, typeorm_1.Column)({ type: 'double' }),
     __metadata("design:type", String)
 ], Blog.prototype, "content", void 0);
 __decorate([

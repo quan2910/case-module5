@@ -2,6 +2,7 @@ import {Request, Response} from "express";
 import {UserService} from "../service/user-service";
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
+import {SECRET} from "../middleware/auth";
 
 
 class UserController {
@@ -17,13 +18,26 @@ class UserController {
     }
     register = async (req: Request, res: Response) => {
         let user = req.body
-        user.password = await bcrypt.hash(user.password, 10)
-        let register = await this.userService.register(user);
-        res.status(200).json(register)
+        // console.log(user)
+        const userFind = await this.userService.findOneUserByUsername(user.username)
+        // console.log(userFind)
+        if(userFind.length !== 0) {
+            res.json({
+                mess: "Tài khoản đã tồn tại !!",
+                checkRegister: false
+            })
+        }else{
+            user.password = await bcrypt.hash(user.password, 10)
+            await this.userService.register(user)
+            res.status(200).json({
+                mess: 'Đăng ký thành công !!',
+                checkRegister: true
+            })
+        }
     }
     login = async (req: Request, res: Response) => {
         let user = req.body
-        let userFind = await this.userService.login(user.username)
+        let userFind = await this.userService.findOneUserByUsername(user.username)
         if (userFind.length == 0) {
             return res.status(200).json({
                 massage: 'User is not exist !'
@@ -36,16 +50,15 @@ class UserController {
                 })
             } else {
                 let payload = {
-                    id: userFind[0]._id,
+                    id: userFind[0].id,
                     username: userFind[0].username
                 }
-                let secret = 'quan'
-                let token = await jwt.sign(payload, secret, {
+                let token = await jwt.sign(payload, SECRET, {
                     expiresIn: 36000
                 });
                 return res.json({
                     token: token,
-                    id: userFind[0]._id
+                    id: userFind[0].id
                 })
             }
         }

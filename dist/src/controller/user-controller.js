@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const user_service_1 = require("../service/user-service");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+const auth_1 = require("../middleware/auth");
 class UserController {
     constructor() {
         this.getAll = async (req, res) => {
@@ -14,13 +15,25 @@ class UserController {
         };
         this.register = async (req, res) => {
             let user = req.body;
-            user.password = await bcrypt_1.default.hash(user.password, 10);
-            let register = await this.userService.register(user);
-            res.status(200).json(register);
+            const userFind = await this.userService.findOneUserByUsername(user.username);
+            if (userFind.length !== 0) {
+                res.json({
+                    mess: "Tài khoản đã tồn tại !!",
+                    checkRegister: false
+                });
+            }
+            else {
+                user.password = await bcrypt_1.default.hash(user.password, 10);
+                await this.userService.register(user);
+                res.status(200).json({
+                    mess: 'Đăng ký thành công !!',
+                    checkRegister: true
+                });
+            }
         };
         this.login = async (req, res) => {
             let user = req.body;
-            let userFind = await this.userService.login(user.username);
+            let userFind = await this.userService.findOneUserByUsername(user.username);
             if (userFind.length == 0) {
                 return res.status(200).json({
                     massage: 'User is not exist !'
@@ -35,16 +48,15 @@ class UserController {
                 }
                 else {
                     let payload = {
-                        id: userFind[0]._id,
+                        id: userFind[0].id,
                         username: userFind[0].username
                     };
-                    let secret = 'quan';
-                    let token = await jsonwebtoken_1.default.sign(payload, secret, {
+                    let token = await jsonwebtoken_1.default.sign(payload, auth_1.SECRET, {
                         expiresIn: 36000
                     });
                     return res.json({
                         token: token,
-                        id: userFind[0]._id
+                        id: userFind[0].id
                     });
                 }
             }
