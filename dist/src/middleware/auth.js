@@ -8,7 +8,7 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 exports.SECRET = 'quan2910';
 const auth = (req, res, next) => {
     let authorization = req.headers.authorization;
-    if (!authorization) {
+    if (authorization) {
         let accessToken = authorization.split(' ')[1];
         if (!accessToken) {
             res.status(401).json({

@@ -9,11 +9,11 @@ class UserService {
             let users = await this.userService.find();
             return users;
         };
-        this.findOneUserByUsername = async (username) => {
+        this.findByName = async (username) => {
             let users = await this.userService.query(`select * from users where username like '%${username}%'`);
             return users;
         };
-        this.login = async (username) => {
+        this.findOneUserByUsername = async (username) => {
             let users = await this.userService.query(`select * from users where username = '${username}'`);
             return users;
         };

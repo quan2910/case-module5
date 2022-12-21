@@ -16,6 +16,6 @@ export class Blog{
     public status: string;
     @Column({type: 'int'})
     public likes: number;
-    @Column({type: 'varchar'})
-    public comments: string;
+    @Column({type: 'int'})
+    public comments: number;
 }

@@ -10,8 +10,8 @@ export class User{
     public password: string;
     @Column ({type:'varchar'})
     public image: string;
-    @Column({type:'int'})
-    public role: number;
-    @Column({type:'int'})
-    public status: number;
+    @Column({type:'varchar'})
+    public role: string;
+    @Column({type:'varchar'})
+    public status: string;
 }

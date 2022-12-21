@@ -19,7 +19,7 @@ class UserController {
     register = async (req: Request, res: Response) => {
         let user = req.body
         // console.log(user)
-        const userFind = await this.userService.login(user.username)
+        const userFind = await this.userService.findOneUserByUsername(user.username)
         // console.log(userFind)
         if (userFind.length !== 0) {
             res.json({
@@ -37,12 +37,12 @@ class UserController {
     }
     findByName = async (req: Request, res: Response) => {
         let user = req.body;
-        let userFind = await this.userService.findOneUserByUsername(user.username);
+        let userFind = await this.userService.findByName(user.username);
         return res.status(200).json(userFind)
     }
     login = async (req: Request, res: Response) => {
         let user = req.body
-        let userFind = await this.userService.login(user.username)
+        let userFind = await this.userService.findOneUserByUsername(user.username)
         if (userFind.length == 0) {
             return res.status(200).json({
                 massage: 'User is not exist !'
@@ -63,7 +63,9 @@ class UserController {
                 });
                 return res.json({
                     token: token,
-                    id: userFind[0].id
+                    id: userFind[0].id,
+                    username: userFind[0].username,
+                    role: userFind[0].role
                 })
             }
         }

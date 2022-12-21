@@ -6,7 +6,8 @@ const blog_1 = require("../model/blog");
 class BlogService {
     constructor() {
         this.findAll = async () => {
-            let blogs = await this.blogService.query(`select * from blogs join users on idUser = users.id`);
+            let query = `select * from blogs join users on blogs.idUser = users.id join comments on blogs.comments = comments.idUser`;
+            let blogs = await this.blogService.query(query);
             return blogs;
         };
         this.findByName = async (tittle) => {

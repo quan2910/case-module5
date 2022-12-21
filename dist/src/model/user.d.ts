@@ -3,6 +3,6 @@ export declare class User {
     username: string;
     password: string;
     image: string;
-    role: number;
-    status: number;
+    role: string;
+    status: string;
 }

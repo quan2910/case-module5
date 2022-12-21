@@ -42,8 +42,8 @@ __decorate([
     __metadata("design:type", Number)
 ], Blog.prototype, "likes", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'varchar' }),
-    __metadata("design:type", String)
+    (0, typeorm_1.Column)({ type: 'int' }),
+    __metadata("design:type", Number)
 ], Blog.prototype, "comments", void 0);
 Blog = __decorate([
     (0, typeorm_1.Entity)({ name: 'blogs' })

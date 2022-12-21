@@ -6,5 +6,5 @@ export declare class Blog {
     time: string;
     status: string;
     likes: number;
-    comments: string;
+    comments: number;
 }
